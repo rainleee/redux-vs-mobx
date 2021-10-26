@@ -1,11 +1,13 @@
 const { createStore } = require('redux');
 const { addPost } = require('./actions/post');
 const { logIn, logOut } = require('./actions/user');
-const reducer = require('./reducers/index');
+const reducer = require('./reducers');
 
 const initialState = {
-  user: null,
-  isLoggingIn: true,
+  user: {
+    isLoggingIn: true,
+    data: null,
+  },
   posts: [],
   comments: [],
   favorites: [],
@@ -29,8 +31,12 @@ console.log('1st', store.getState());
 store.dispatch(
   logIn({
     id: 1,
-    name: 'rainlee',
-    admin: true,
+    user: {
+      data: {
+        name: 'rainlee',
+        admin: true,
+      },
+    },
   })
 );
 console.log('2nd', store.getState());

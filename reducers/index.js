@@ -1,23 +1,8 @@
-const reducer = (prevState, action) => {
-  // 새로운 state 만들어주기
-  switch (action.type) {
-    case 'LOG_IN':
-      return {
-        ...prevState,
-        user: action.data,
-      };
-    case 'LOG_OUT':
-      return {
-        ...prevState,
-        user: null,
-      };
-    case 'ADD_POST':
-      return {
-        posts: [...prevState.posts, action.data],
-      };
-    default:
-      return prevState;
-  }
-};
+const { combineReducers } = require('redux');
+const userReducer = require('./userReducer');
+const postReducer = require('./postReducer');
 
-module.exports = reducer;
+module.exports = combineReducers({
+  user: userReducer,
+  posts: postReducer,
+});
